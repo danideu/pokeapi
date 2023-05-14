@@ -14,8 +14,6 @@ const fetchPokexmon = async (id) => {
         const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
 
         const data = await res.json()
-        
-        console.log(data)
 
         const pokemon = {
             nombre: data.name,
@@ -30,18 +28,14 @@ const fetchPokexmon = async (id) => {
 }
 
 const pintarCard = (pokemon) => {
-    console.log(pokemon)
     const flex = document.querySelector('.flex')
     const template = document.querySelector('#template-card').content
     const clone = template.cloneNode(true)
     const fragment = document.createDocumentFragment()
-    
-    console.log("El template es: " + template)
-    console.log("Imagen: " + pokemon.imagen)
+
     clone.querySelector('.card-img-top').setAttribute('src', pokemon.imagen)
     clone.querySelector('.card-title').textContent = pokemon.nombre
     clone.querySelector('.experience').innerHTML = `Experiencia ${pokemon.experiencia}`
-    console.log("El clon es: " + clone)
     fragment.appendChild(clone)
     flex.appendChild(fragment)
 }
